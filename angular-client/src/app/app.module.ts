@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { CreateItemComponent } from './create-item/create-item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { ItemListComponent } from './item-list/item-list.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ItemEditComponent } from './item-edit/item-edit.component';
+import {LoginComponent} from "./auth/login/login.component";
+import {HttpClientModule} from "@angular/common/http";
+import {RegistrationComponent} from "./auth/registration/registration.component";
 
 @NgModule({
   declarations: [
@@ -15,12 +18,16 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
     CreateItemComponent,
     ItemDetailsComponent,
     ItemListComponent,
-    ItemEditComponent
+    ItemEditComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
