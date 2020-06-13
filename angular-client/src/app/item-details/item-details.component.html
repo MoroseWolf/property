@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="row">
+          <label class="col-sm-auto">
+            <img src="data:image/JPEG;base64,{{item.image}}" alt="" style='width:600px; height: 450px;'>
+          </label>
+          <div class="col-sm-auto">
+
+            <div class="row">
+              <label class="col">Type:</label>
+              <label class="col">{{item.typeName}}</label>
+            </div>
+
+            <div class="row">
+              <label class="col">Name:</label>
+              <label class="col">{{item.name}}</label>
+            </div>
+
+            <div class="row">
+              <label class="col">Size:</label>
+              <label class="col">{{item.size}}</label>
+            </div>
+
+            <div class="row">
+              <label class="col">Cost:</label>
+              <label class="col">{{item.cost}}$</label>
+            </div>
+
+            <div class="row">
+              <label class="col">Description:</label>
+              <label class="col">{{item.description}}</label>
+            </div>
+
+            <div class="row">
+              <label class="col">Dislocation:</label>
+              <label class="col">{{item.dislocation}}</label>
+            </div>
+
+
+
+            <br>
+            <p><button *ngIf="flagOfEditAndDelete" [routerLink]="['/edit/', item.id]" routerLinkActive="active" class="btn btn-outline-info">Edit</button></p>
+            <p><button *ngIf="flagOfEditAndDelete" (click)="deleteItem(item.id)" class="btn btn-outline-danger">Delete</button></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

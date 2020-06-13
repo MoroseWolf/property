@@ -1,0 +1,107 @@
+<p class="container content">
+
+<div class="text-right">
+  <button [routerLink]="['/add/']" routerLinkActive="active" class="btn btn-info mr-sm-2">Create new</button>
+</div>
+
+<ul class="pagination">
+  <div class="form-group form-row">
+    <div class="form-group col">
+      <label class="mr-sm-2" for="sortBy" style="margin-left: 10px;">Sort adverts by</label>
+      <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="sortBy" name="sortBy" (change)="changeItemsOnPage()">
+        <option *ngFor="let field of sortFields" [value]="field[0]">{{field[1]}}</option>
+      </select>
+    </div>
+  </div>
+</ul>
+
+<h4>Filters</h4>
+<div class="form-group form-row">
+
+  <div class="form-group col">
+    <label class="mr-sm-2">Type</label>
+    <select class="custom-select mr-sm-2" id="type" placeholder="Value"
+            [(ngModel)]="filterType" (ngModelChange)="addFilter('type', filterType)">
+      <option value="ALL">All</option>
+      <option *ngFor="let type of types | async" value="{{type.id}}">{{type.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group col">
+    <label class="mr-sm-2">Item cost filter</label>
+    <select class="custom-select mr-sm-2" id="cost" placeholder="Value"
+            [(ngModel)]="filterCost" (ngModelChange)="addFilter('cost', filterCost)">
+      <option *ngFor="let cost of listOfCosts" value="{{cost}}">{{cost}}</option>
+    </select>
+  </div>
+
+
+  <div class="form-group col">
+    <label class="mr-sm-2">Ownership</label>
+    <select class="custom-select mr-sm-2" id="owner" placeholder="Value"
+            [(ngModel)]="filterOwner" (ngModelChange)="addFilter('owner', filterOwner)">
+      <option *ngFor="let owner of listOfOwns" value="{{owner[0]}}">{{owner[1]}}</option>
+    </select>
+  </div>
+
+
+</div>
+<div class="col-sm-2">
+  <button type="submit" class="btn btn-primary mb-2 col" (click)="changeItemsOnPage()">Apply filters</button>
+  <button type="submit" class="btn btn-danger mb-2 col" (click)="deleteAllFilters()">Delete all filters</button>
+</div>
+
+<p><h3>Propertys</h3>
+<div class="row">
+  <div class="col-md-8 products">
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let item of items">
+        <div class="product">
+          <div class="product-img"><img src="data:image/JPEG;base64,{{car.carImage}}" alt=""></div>
+          <div class="product-title">{{item.typeName}} {{item.name}}</div>
+          <div class="product-price">{{item.cost}} $</div>
+          <br>
+          <br>
+          <button [routerLink]="['/view/', item.id]" routerLinkActive="active" class="btn btn-outline-primary">View</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <div class="col-sm-auto">
+
+      <div class="row">
+        <div class="form-group">
+          <label class="mr-sm-2" style="margin-left: 10px;">Adverts on page</label>
+          <select class="custom-select mr-sm-2" id="pageSize" [(ngModel)]="pageSize" name="pageSize" (change)="changeItemsOnPage()">
+            <option *ngFor="let num of pageSizesArray" [value]="num">{{num}}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <li class="page-item">
+          <a class="page-link" (click)="changePageToPrev()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li *ngFor="let num of paginationArray" class="page-item"><a class="page-link" (click)="changePage(num)" >{{num}}</a></li>
+        <li class="page-item">
+          <a class="page-link" (click)="changePageToNext()" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </div>
+
+    </div>
+  </ul>
+</nav>
+
+

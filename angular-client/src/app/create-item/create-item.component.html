@@ -1,0 +1,98 @@
+<br>
+<h3>Add Item</h3>
+<div class="card">
+  <div class="card-body">
+    <div [hidden]="submitted" style="width: 400px;">
+      <form (ngSubmit)="onSubmit()" enctype="multipart/form-data" [formGroup]="itemForm" novalidate>
+
+        <div class="form-group">
+          <label class="mr-sm-2" for="typeId">Brand</label>
+          <select class="custom-select mr-sm-2" id="typeId" formControlName="typeId" required [(ngModel)]="item.typeId" #id [(ngModel)] = "item.typeId" name="typeId">
+            <option *ngFor="let type of types | async" value="{{type.id}}">{{type.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Car model</label>
+          <label for="name"></label>
+          <input type="text" class="form-control" id="name" formControlName="name" required [(ngModel)]="item.name" #id [(ngModel)] = "item.name" name="name">
+        </div>
+        <div *ngIf="itemForm.controls['name'].invalid && (itemForm.controls['name'].dirty || itemForm.controls['name'].touched)" class="alert alert-danger">
+          <div *ngIf="itemForm.controls['name'].errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="itemForm.controls['name'].errors.maxlength">
+            Name is too long.
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-md-4">Cost</label>
+          <label for="cost"></label>
+          <input type="text" class="form-control" id="cost" formControlName="cost" required [(ngModel)]="item.cost" #id [(ngModel)] = "item.cost" name="cost">
+        </div>
+        <div *ngIf="itemForm.controls['cost'].invalid && (itemForm.controls['cost'].dirty || itemForm.controls['cost'].touched)" class="alert alert-danger">
+          <div *ngIf="itemForm.controls['cost'].errors.required">
+            Cost is required.
+          </div>
+          <div *ngIf="itemForm.controls['cost'].errors.pattern">
+            Cost must be a number.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Size</label>
+          <label for="size"></label>
+          <input type="text" class="form-control" id="size" formControlName="size" required [(ngModel)]="item.size" #id [(ngModel)] = "item.size" name="size">
+        </div>
+        <div *ngIf="itemForm.controls['size'].invalid && (itemForm.controls['size'].dirty || itemForm.controls['size'].touched)" class="alert alert-danger">
+          <div *ngIf="itemForm.controls['size'].errors.required">
+            Size is required.
+          </div>
+          <div *ngIf="itemForm.controls['size'].errors.pattern">
+            Size must be a number.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Dislocation</label>
+          <label for="dislocation"></label>
+          <input type="text" class="form-control" id="dislocation" formControlName="dislocation" required [(ngModel)]="item.dislocation" #id [(ngModel)] = "item.dislocation" name="dislocation">
+        </div>
+        <div *ngIf="itemForm.controls['dislocation'].invalid && (itemForm.controls['dislocation'].dirty || itemForm.controls['dislocation'].touched)" class="alert alert-danger">
+          <div *ngIf="itemForm.controls['dislocation'].errors.required">
+            Dislocation is required.
+          </div>
+          <div *ngIf="itemForm.controls['dislocation'].errors.maxlength">
+            Text is too long.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Description</label>
+          <label for="description"></label>
+          <input type="text" class="form-control" id="description" formControlName="description" required [(ngModel)]="item.description" #id [(ngModel)] = "item.description" name="description">
+        </div>
+        <div *ngIf="itemForm.controls['description'].invalid && (itemForm.controls['description'].dirty || itemForm.controls['description'].touched)" class="alert alert-danger">
+          <div *ngIf="itemForm.controls['description'].errors.required">
+            Description is required.
+          </div>
+          <div *ngIf="itemForm.controls['description'].errors.maxlength">
+            Text is too long.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image: </label>
+          <br>
+          <input type="file" id="image" (change)="handleImageInput($event.target.files)">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" [disabled]="(itemForm.invalid || !imageSelected || !rightTypeFile)"  class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
