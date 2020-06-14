@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import { ItemService } from '../item.service';
 import {Item} from '../item';
 import {Type} from '../type';
@@ -70,7 +70,7 @@ export class ItemListComponent implements OnInit {
     const step = 3;
     const max = 15;
     for (let i = start; i <= max; i += step) {
-      this.pageSizesArray.push(i);
+      this.paginationArray.push(i);
     }
   }
 
