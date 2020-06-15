@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Item} from "../item";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ItemService} from "../item.service";
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-item-details',
